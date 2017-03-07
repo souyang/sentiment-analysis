@@ -1,4 +1,6 @@
 import sys
+import os
+import codecs
 import urllib2
 import datetime as dt
 from bs4 import BeautifulSoup  
@@ -84,8 +86,13 @@ def search_and_analysis_tweets(celebrity_list):
     #set tweets for individuals
     for indiv in celebrity_list:
         tweets_list = search_tweets(indiv.get_name())
-        indiv.set_tweets(tweets_list)       
+        indiv.set_tweets(tweets_list) 
+    print('******************************* sentiment analysis by rule start ******************************* ')          
     Senti.sentiment_analysis_by_rules(celebrity_list)
+    print('******************************* sentiment analysis by rule end ******************************* ')        
+    print('******************************* sentiment analysis by VADER end ******************************* ')            
+    Senti.sentiment_analysis_by_VADER(celebrity_list)
+    print('******************************* sentiment analysis by VADER end ******************************* ')   
     print('******************************* Overall sentiment analysis done******************************* ')
     sys.exit()
     
@@ -93,13 +100,24 @@ def search_tweets(search_string):
     total_tweets_threshold = 50
     tweets_list = []
     global api
-    try:
-        tweets = api.search(q=search_string, result_type='recent', lang='en', count=total_tweets_threshold)       
-        for tweet in tweets:
-            tweets_list.append(tweet.text)
-        return tweets_list 
-    except Exception, e:
-        print 'search tweets failed' + e  
-        return None
-        
+    file_name = "celebrity_" + str(search_string) + "_tweetslist.txt"
+    if os.stat(file_name).st_size==0:
+        try:        
+            tweets = api.search(q=search_string, result_type='recent', lang='en', count=total_tweets_threshold)       
+            outfile = codecs.open(file_name, 'w', "utf-8")
+            for tweet in tweets:
+                tweets_list.append(tweet.text)
+                outfile.write(tweet.text + '\n')        
+            return tweets_list 
+        except Exception, e:
+            print 'search tweets failed' + e  
+            return None
+        else:
+            outfile.close()
+    else:
+        with open(file_name) as tweetsfile:            
+            for line in tweetsfile:
+                tweetsingelline = str(line).strip().strip('\n');
+                tweets_list.append(tweetsingelline);
+        return tweets_list
 main() 
