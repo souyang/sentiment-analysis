@@ -18,3 +18,13 @@ Ellen Muth, Semi Positive, Actress, Dead Like Me, https://images-na.ssl-images-a
 Tom Arnold, Semi Positive, Actor, True Lies, https://images-na.ssl-images-amazon.com/images/M/MV5BMTk4NTYzNzMyNl5BMl5BanBnXkFtZTgwNjc2NzgzMzE@._V1_SX214_AL_.jpg
 Shaquille O'Neal, Semi Positive, Self, After the Sunset, https://images-na.ssl-images-amazon.com/images/M/MV5BMTUzMjA0MzQxMF5BMl5BanBnXkFtZTcwODA3ODY3Mg@@._V1_SX214_AL_.jpg
 Martin Kove, Semi Positive, Actor, The Karate Kid, https://images-na.ssl-images-amazon.com/images/M/MV5BMTg1MjU5MDY0N15BMl5BanBnXkFtZTcwMjQxMzI5OQ@@._V1_SX214_AL_.jpg
+Connie Britton, Semi Positive, Actress, Nashville, https://images-na.ssl-images-amazon.com/images/M/MV5BMTcyODQ2NDIxN15BMl5BanBnXkFtZTcwNTY4ODM2MQ@@._V1_SX214_AL_.jpg
+Rob Reiner, Semi Positive, Actor, This Is Spinal Tap, https://images-na.ssl-images-amazon.com/images/M/MV5BMTc2Njg1MDM2OV5BMl5BanBnXkFtZTcwMTE4NDk2Mw@@._V1_SX214_AL_.jpg
+Moira Kelly, Semi Positive, Actress, The Lion King, https://images-na.ssl-images-amazon.com/images/M/MV5BNDIyNjQwNDg4N15BMl5BanBnXkFtZTcwNzEyMDg4Ng@@._V1_SX214_AL_.jpg
+Yael Stone, Semi Positive, Actress, Orange Is the New Black, https://images-na.ssl-images-amazon.com/images/M/MV5BMjQ4NzE1OTM3Ml5BMl5BanBnXkFtZTgwMDU1NjMwNjE@._V1_SX214_AL_.jpg
+Amy Pietz, Semi Positive, Actress, Caroline in the City, https://images-na.ssl-images-amazon.com/images/M/MV5BMjMyMzc2MTc4MV5BMl5BanBnXkFtZTgwNDYzOTAwNDE@._V1_SX214_AL_.jpg
+Shaun Evans, Semi Positive, Actor, Cashback, https://images-na.ssl-images-amazon.com/images/M/MV5BMTUxODMxNDMxMF5BMl5BanBnXkFtZTcwNDUwNzcxOA@@._V1_SX214_AL_.jpg
+Ellen Muth, Semi Positive, Actress, Dead Like Me, https://images-na.ssl-images-amazon.com/images/M/MV5BMjEyMTE0NDgwN15BMl5BanBnXkFtZTcwMTk0NjYyMQ@@._V1_SX214_AL_.jpg
+Tom Arnold, Semi Positive, Actor, True Lies, https://images-na.ssl-images-amazon.com/images/M/MV5BMTk4NTYzNzMyNl5BMl5BanBnXkFtZTgwNjc2NzgzMzE@._V1_SX214_AL_.jpg
+Shaquille O'Neal, Semi Positive, Self, After the Sunset, https://images-na.ssl-images-amazon.com/images/M/MV5BMTUzMjA0MzQxMF5BMl5BanBnXkFtZTcwODA3ODY3Mg@@._V1_SX214_AL_.jpg
+Martin Kove, Semi Positive, Actor, The Karate Kid, https://images-na.ssl-images-amazon.com/images/M/MV5BMTg1MjU5MDY0N15BMl5BanBnXkFtZTcwMjQxMzI5OQ@@._V1_SX214_AL_.jpg

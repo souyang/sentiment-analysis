@@ -26,7 +26,7 @@ class Senti():
         negative_words = set()
         positive_bag_of_words = "positive-words.txt"
         negative_bag_of_words = "negative-words.txt" 
-        output_file_name = "rule-based-sentiment-analysis-result.txt"
+        output_file_name = "Naive-Rule-based-sentiment-analysis-result.txt"
         #clear the output file
         try:
             open(output_file_name, 'w').close();
