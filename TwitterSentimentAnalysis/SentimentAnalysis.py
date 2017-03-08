@@ -1,12 +1,14 @@
 from FinalOutputResult import FinalOutputResult
 import re
 from nltk.sentiment import vader
-
+from twython import Twython
+import os
 # this class is to perform the sentiment analysis 
 class Senti():
     @staticmethod
     def sentiment_analysis_by_VADER(celebrity_list):
-        output_file_name = "VADER-based-sentiment-analysis-result.txt"
+        cwd = os.getcwd()
+        output_file_name = cwd+ "/analysis-result/VADER-based-sentiment-analysis-result.txt"
         sia = vader.SentimentIntensityAnalyzer()
         for indiv in celebrity_list:
             final_conclusion = Senti.__vader_analysis(sia, indiv.get_tweets())
@@ -24,9 +26,10 @@ class Senti():
     def sentiment_analysis_by_rules(celebrity_list):
         positive_words = set()
         negative_words = set()
-        positive_bag_of_words = "positive-words.txt"
-        negative_bag_of_words = "negative-words.txt" 
-        output_file_name = "Naive-Rule-based-sentiment-analysis-result.txt"
+        cwd = os.getcwd()
+        positive_bag_of_words = cwd+"/text-lexicon/positive-words.txt"
+        negative_bag_of_words = cwd+"/text-lexicon/negative-words.txt" 
+        output_file_name = cwd+"/analysis-result/Naive-Rule-based-sentiment-analysis-result.txt"
         #clear the output file
         try:
             open(output_file_name, 'w').close();
@@ -61,11 +64,21 @@ class Senti():
             positive_counter = 0
             negative_counter = 0
             words = tweet.split(' ')
+            emoticons = Senti.__get_emoticons()
             for word in words:
-                if word in positive_words:
-                    positive_counter = positive_counter + 1
-                elif word in negative_words:
-                    negative_counter = negative_counter + 1
+                if word in emoticons: # skip emoticons
+                    continue
+                if word.startswith('NEG_') == False: #contains negation
+                    if word in positive_words:
+                        positive_counter = positive_counter + 1
+                    elif word in negative_words:
+                        negative_counter = negative_counter + 1
+                else:
+                    keyword = word[4:] # get the real word
+                    if keyword in negative_words:
+                        positive_counter = positive_counter + 1
+                    elif keyword in positive_words:
+                        negative_counter = negative_counter + 1                    
             positive_counts.append(positive_counter)
             negative_counts.append(negative_counter)
             if positive_counter > negative_counter:
@@ -98,6 +111,10 @@ class Senti():
     def __preprocessTweets(tweets):
         preprocessed_tweets = []
         for tweet in tweets:
+            tweet = tweet.decode("utf-8")
+            tweet = tweet.strip().strip('\n')
+            if not tweet:
+                continue
             # 1. Convert to lower case
             tweet=tweet.lower()
             # 2. Replace links with the word URL, we won't need URL for analysis
@@ -106,6 +123,35 @@ class Senti():
             tweet=re.sub('@[^\s]+','AT_USER',tweet)
             # 4. Replace #word with word, we won't need hashtag for analysis
             tweet=re.sub(r'#([^\s]+)',r'\1',tweet)
+            # 5. Replace groooovy to groovy
+            tweet = Senti.__reduce_length(tweet)
+            tweet = Senti.__negation(tweet)
             preprocessed_tweets.append(tweet)
         return preprocessed_tweets  
-            
+     
+    @staticmethod
+    def __negation(tweet):
+        tweet_words = tweet.split(' ')
+        negation_key_word_set = {"don't", "never", "nothing", "nowhere", "none", "not", "hasn't", "hadn't", "can't", "should't", "won't", "wouldn't", "don't", "doesn't", "didn't", "isn't", "aren't", "ain't"}
+        neg_count =[]
+        for i in range(len(tweet_words)):
+            neg_count.append(0)
+        for neg in negation_key_word_set:
+            if neg in tweet_words:
+                neg_count[i] = neg_count[i] + 1
+        for i in range(len(tweet_words)):
+            if neg_count[i] % 2 == 1:
+                tweet_words[i] = "NEG_" + tweet_words[i]
+        return ' '.join(tweet_words)
+    
+    
+    @staticmethod
+    def __reduce_length(text):          
+        pattern = re.compile(r"(.)\1{2,}")
+        return pattern.sub(r"\1\1", text)
+        
+    @staticmethod
+    def __get_emoticons():
+        emoticons = [':)','(:',': )','( :','=)','(=','= )','( =',':D',': D',':p',': p',':(','):',': (',') :','=(',')=','= (',') =',':D',': D',':p',': p',':-)','(-:',':- )','( -:',':-(',')-:',':- (',') -:']
+        emoticons = set(emoticons)
+        return emoticons     

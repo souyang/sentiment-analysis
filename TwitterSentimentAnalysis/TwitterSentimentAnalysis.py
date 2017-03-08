@@ -8,6 +8,7 @@ import tweepy
 from tweepy.auth import OAuthHandler
 from SentimentAnalysis import Senti
 from Celebrity import Celebrity
+import ConfigParser
 
 
 def main():
@@ -21,7 +22,15 @@ def main():
       
 def validate_credentials():
     global api
-    consumer_key = 'TnQSyBoTI79UOBGdQXf5QuXSI'
+    config = ConfigParser.ConfigParser()
+    cwd = os.getcwd()
+    #config.read([cwd + '/configuration/configuration.properties'])
+    #consumer_key = config.get('TwitterAPISection', 'twitter.consumer_key')#'TnQSyBoTI79UOBGdQXf5QuXSI'
+    #print consumer_key
+    #consumer_secret  = config.get('TwitterAPISection','twitter.consumer_secret')#'6cc52SUqayfUsiDlzJM9jmCJYeNFERgPVHJgoVosMFVSSabV5h'
+    #access_token  = config.get('TwitterAPISection', 'twitter.access_token')#'3041260224-LBgb9DAMYv91bfdiaudVQsKQb4evLgG5GVQy7fm'
+    #access_secret = config.get('TwitterAPISection', 'twitter.access_secret') #'s0Xhe7JImRx7fNrlYuHXHHlxyF14hKzdvv220VLlyjcKe'
+    consumer_key ='TnQSyBoTI79UOBGdQXf5QuXSI'
     consumer_secret = '6cc52SUqayfUsiDlzJM9jmCJYeNFERgPVHJgoVosMFVSSabV5h'
     access_token = '3041260224-LBgb9DAMYv91bfdiaudVQsKQb4evLgG5GVQy7fm'
     access_secret = 's0Xhe7JImRx7fNrlYuHXHHlxyF14hKzdvv220VLlyjcKe'
@@ -100,14 +109,16 @@ def search_tweets(search_string):
     total_tweets_threshold = 50
     tweets_list = []
     global api
-    file_name = "celebrity_" + str(search_string) + "_tweetslist.txt"
-    if os.stat(file_name).st_size==0:
+    cwd = os.getcwd()
+    file_name = cwd + "/tweets-list/celebrity_" + str(search_string) + "_tweetslist.txt"
+    if os.path.isfile(file_name) is False or os.stat(file_name).st_size==0:
         try:        
             tweets = api.search(q=search_string, result_type='recent', lang='en', count=total_tweets_threshold)       
             outfile = codecs.open(file_name, 'w', "utf-8")
             for tweet in tweets:
-                tweets_list.append(tweet.text)
-                outfile.write(tweet.text + '\n')        
+                text = tweet.text
+                tweets_list.append(text)
+                outfile.write(text + '\n')        
             return tweets_list 
         except Exception, e:
             print 'search tweets failed' + e  
@@ -118,6 +129,7 @@ def search_tweets(search_string):
         with open(file_name) as tweetsfile:            
             for line in tweetsfile:
                 tweetsingelline = str(line).strip().strip('\n');
-                tweets_list.append(tweetsingelline);
+                if tweetsingelline: 
+                    tweets_list.append(tweetsingelline);
         return tweets_list
 main() 
