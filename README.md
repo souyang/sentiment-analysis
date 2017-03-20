@@ -20,10 +20,16 @@ Positive-words.txt
 [Reference Link](http://www.cs.uic.edu/~liub/FBS/sentiment-analysis.html)
 
 Package: 
+
 Tweepy
+
 NLTK VADER
+
 Beautiful Soup
+
 Codecs Library
+
 Urllib2 Library
+
 Datetime 
 
