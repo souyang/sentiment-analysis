@@ -5,14 +5,15 @@ The purpose of this implementation is to be able to automatically obtain the top
 
 ## Solution flow diagram
 
-![alt text](https://github.com/souyang/sentiment-analysis/blob/master/Sentiment%20Analysis-Flowchart.png "Logo Titl Text 1"e)
+![alt text](https://github.com/souyang/sentiment-analysis/blob/master/Sentiment%20Analysis-Flowchart.png)
 
 ## Tools and packages used
 
 The tools and packages includes: 
-Tools:
-Dictionary of opinion lexicon could be found below:
 
+Tools:
+
+Dictionary of opinion lexicon could be found below:
 Negative-words.txt
 Positive-words.txt
 
