@@ -11,11 +11,13 @@ The purpose of this implementation is to be able to automatically obtain the top
 
 The tools and packages includes: 
 Tools:
-Dictionary of positive and negative words
+Dictionary of opinion lexicon could be found below:
+
 Negative-words.txt
 Positive-words.txt
+
 [Reference Link](http://www.cs.uic.edu/~liub/FBS/sentiment-analysis.html)
-They could be downloaded from here
+
 Package: 
 Tweepy
 NLTK VADER
